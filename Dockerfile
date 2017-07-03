@@ -12,7 +12,7 @@ RUN apt-get update && apt-get -y install fontconfig wget bzip2 unzip && \
     mv /phantomjs-${phantomjs_version}-linux-x86_64/bin/phantomjs /usr/bin &&\
     useradd -m phantomjs &&\
     apt-get purge -y unzip wget bzip2 &&\
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* &&\
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
  
 USER phantomjs
 
