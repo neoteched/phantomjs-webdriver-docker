@@ -3,7 +3,7 @@ MAINTAINER Achim Rohn <achim@rohn.eu>
 
 ENV phantomjs_version 2.1.1
 RUN apt-get update && apt-get -y install fontconfig wget bzip2 \
-    fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming fonts-droid
+    fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming
 RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2
 RUN tar xjf phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2
 RUN mv /phantomjs-${phantomjs_version}-linux-x86_64/bin/phantomjs /usr/bin
