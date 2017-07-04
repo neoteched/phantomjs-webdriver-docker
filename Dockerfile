@@ -14,7 +14,8 @@ RUN apt-get update && apt-get -y install fontconfig wget bzip2 unzip && \
     useradd -m phantomjs &&\
     apt-get purge -y unzip wget bzip2 &&\
     rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
- 
+ADD 62-noto.conf /etc/fonts/conf.avail
+RUN cd /etc/fonts/conf.d && ln -s ../conf.avail/62-noto.conf
 USER phantomjs
 
 EXPOSE 8910
