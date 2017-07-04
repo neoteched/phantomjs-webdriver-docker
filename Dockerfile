@@ -2,21 +2,14 @@ FROM ubuntu:16.04
 MAINTAINER Achim Rohn <achim@rohn.eu>
 
 ENV phantomjs_version 2.1.1
-RUN apt-get update && apt-get -y install fontconfig wget bzip2 unzip && \
-    cd /tmp && \
-    wget https://noto-website.storage.googleapis.com/pkgs/Noto-unhinted.zip &&\
-    unzip Noto-unhinted.zip && mkdir -p /usr/share/fonts/opentype/noto &&\
-    cp *.ot? /usr/share/fonts/opentype/noto/ &&\
-    cd / && \
-    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2 &&\
+RUN apt-get update && apt-get -y install fontconfig wget bzip2 \
+    fonts-wqy-microhei && \
+    wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2 && cd / && \
     tar xjf phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2 &&\
     mv phantomjs-${phantomjs_version}-linux-x86_64/bin/phantomjs /usr/bin &&\
     useradd -m phantomjs &&\
-    apt-get purge -y unzip wget bzip2 &&\
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
-ADD 62-noto.conf /etc/fonts/conf.avail
-RUN cd /etc/fonts/conf.d && ln -s ../conf.avail/62-noto.conf &&\
-    fc-cache -f -v
+    apt-get purge -y wget bzip2 &&\
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* /phantomjs-${phantomjs_version}-linux-x86_64.tar.bz2
 USER phantomjs
 
 EXPOSE 8910
